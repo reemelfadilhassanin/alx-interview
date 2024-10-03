@@ -18,9 +18,4 @@ def pascal_triangle(n):
         tra.append(temp)
 
     return tra
-
-# Using help to check the docstring
-help(pascal_triangle)
-
-# Using __doc__ attribute to check the docstring
-print(pascal_triangle.__doc__)
+	
