@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This modules defines lockboxes 
+This modules defines lockboxes
 """
 
 
