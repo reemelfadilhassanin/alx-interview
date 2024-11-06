@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 
+
 def is_safe(board, row, col, N):
     """Check if it's safe to place a queen at board[row][col]."""
     # Check column
@@ -20,6 +21,7 @@ def is_safe(board, row, col, N):
 
     return True
 
+
 def solve_nqueens(board, row, N, solutions):
     """Backtracking to solve the N Queens problem."""
     if row == N:
@@ -30,12 +32,13 @@ def solve_nqueens(board, row, N, solutions):
                     solution.append([r, c])
         solutions.append(solution)
         return
-    
+
     for col in range(N):
         if is_safe(board, row, col, N):
             board[row][col] = 1
             solve_nqueens(board, row + 1, N, solutions)
             board[row][col] = 0  # backtrack
+
 
 def main():
     """Main function to handle input and output."""
@@ -53,12 +56,14 @@ def main():
         print("N must be at least 4")
         sys.exit(1)
 
-    board = [[0 for _ in range(N)] for _ in range(N)]  # initialize the board with 0s
+    board = [[0 for _ in range(N)] for _ in range(N)]
+    # Initialize the board with 0s
     solutions = []
     solve_nqueens(board, 0, N, solutions)
 
     for solution in solutions:
         print(solution)
+
 
 if __name__ == "__main__":
     main()
