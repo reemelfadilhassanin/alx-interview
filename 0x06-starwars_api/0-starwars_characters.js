@@ -3,11 +3,11 @@
 /**
  * Makes an HTTP GET request and returns a Promise that resolves
  * with the parsed JSON response or rejects with an error.
- * 
+ *
  * @param {string} url - The URL to fetch.
  * @returns {Promise<Object>} A Promise that resolves with the parsed JSON response.
  */
-function makeRequest(url) {
+function makeRequest (url) {
   const request = require('request');
   return new Promise((resolve, reject) => {
     request.get(url, (error, response, body) => {
@@ -23,12 +23,12 @@ function makeRequest(url) {
 /**
  * Main function that retrieves information about Star Wars movie characters
  * based on the movie ID passed as a command-line argument.
- * 
+ *
  * The movie ID is used to fetch data about the movie and its characters,
  * then it prints each character's name in the order they appear in the movie.
  */
-async function main() {
-  const args = process.argv;  // Retrieve command-line arguments
+async function main () {
+  const args = process.argv; // Retrieve command-line arguments
 
   // Check if movie ID is provided
   if (args.length < 3) {
