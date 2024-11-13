@@ -1,48 +1,61 @@
 #!/usr/bin/node
 
-// Require the 'request' module for making HTTP requests
-const request = require('request');
-
-// Function to make a GET request and return a Promise
+/**
+ * Makes an HTTP GET request and returns a Promise that resolves
+ * with the parsed JSON response or rejects with an error.
+ * 
+ * @param {string} url - The URL to fetch.
+ * @returns {Promise<Object>} A Promise that resolves with the parsed JSON response.
+ */
 function makeRequest(url) {
+  const request = require('request');
   return new Promise((resolve, reject) => {
     request.get(url, (error, response, body) => {
-      if (error) reject(error);
-      else resolve(JSON.parse(body));
+      if (error) {
+        reject(error);
+      } else {
+        resolve(JSON.parse(body));
+      }
     });
   });
 }
 
-// Main function to fetch movie and character data
+/**
+ * Main function that retrieves information about Star Wars movie characters
+ * based on the movie ID passed as a command-line argument.
+ * 
+ * The movie ID is used to fetch data about the movie and its characters,
+ * then it prints each character's name in the order they appear in the movie.
+ */
 async function main() {
-  const args = process.argv;  // Get command-line arguments
+  const args = process.argv;  // Retrieve command-line arguments
 
-  // Check if a movie ID was passed
+  // Check if movie ID is provided
   if (args.length < 3) {
     console.log('Usage: ./0-starwars_characters.js <movie_id>');
     return;
   }
 
-  // Define the URL for fetching movie details based on movie ID
+  // Construct the movie URL using the passed movie ID
   const movieUrl = `https://swapi-api.alx-tools.com/api/films/${args[2]}`;
 
   try {
-    // Fetch the movie data
+    // Fetch movie data
     const movie = await makeRequest(movieUrl);
 
-    // If there are no characters for this movie, exit early
+    // If the movie has no characters, exit early
     if (!movie.characters || movie.characters.length === 0) {
       console.log('No characters found for this movie.');
       return;
     }
 
-    // For each character URL, fetch character data and print their name
+    // Fetch and print each character's name
     for (const characterUrl of movie.characters) {
       const character = await makeRequest(characterUrl);
       console.log(character.name);
     }
   } catch (error) {
-    // If an error occurs, print it
+    // Handle errors (e.g., network failure, invalid movie ID)
     console.error('Error:', error.message);
   }
 }
