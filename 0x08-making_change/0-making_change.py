@@ -1,13 +1,9 @@
 #!/usr/bin/python3
-""" Making changes """
+""" This for making changes """
 
 
 def makeChange(coins, total):
-    """ Generate changes needed to reach total
-
-    Args:
-        coins ([List]): [List of Coins available]
-        total ([int]): [total amount needed]
+    """ this defines gnerate changes to reach result
     """
     if total <= 0:
         return 0
