@@ -1,0 +1,19 @@
+{
+    "extends": "airbnb-base",
+    "env": {
+        "node": true,
+        "es2020": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "rules": {
+        // Allow semicolons at the top of the file as semistandard allows
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-console": "off" // Disable no-console rule if necessary for debugging
+    }
+}
